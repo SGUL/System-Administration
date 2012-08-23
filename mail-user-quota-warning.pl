@@ -1,4 +1,6 @@
 #!/usr/bin/perl
+# Script sends a warning to users who are over a given quota percentage
+
 use Mozilla::LDAP::Conn;                # Main "OO" layer for LDAP
 use Mozilla::LDAP::Utils;               # LULU, utilities.
 use Quota;
@@ -8,6 +10,9 @@ use warnings;
 my $ldap_host="localhost";
 my $ldap_port="389";
 my $user;
+
+# quota working threshold
+my $quotaperc = 80;
 
 # Set up an LDAP connection
 my $search_base="ou=people,o=your.domain.com";
@@ -56,7 +61,7 @@ while ($entry) {
 			$used_str = sprintf "%.0f", $used;
 			$available_str = sprintf "%.0f", $available;
 			# there is a quota defined, and its usage is > 80%
-			if (($available > 1) && ($percent > 80)) {
+			if (($available > 1) && ($percent > $quotaperc)) {
 				# if it's over 100%, the user is over quota
 				$over=0;
 				if ($used >= $available) {
