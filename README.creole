@@ -1,0 +1,19 @@
+= List of scipts =
+Note that all script are prefixed by their area:
+- mail: all scripts sending e-mails
+- rt: Request Tracker management scripts.
+
+== mail-user-quota-warning.pl ==
+This script is to be added to crontab to check for filesystem quotas and mail all users who exceed a given threshold.
+
+== rt_backup_database.sh ==
+This script creates a backup for a Request Tracker database.
+
+== rt_set_privileged_and_add_to_group.pl ==
+This script set a user to be privileged in Request Tracker and add to a given group.
+
+== rt_set_privileged_and_add_to_group_multiuser.sh ==
+This scripts calls rt_set_privileged_and_add_to_group.pl for a number of users as specified in the userlist file.
+
+== userlist ==
+Sample file for rt_set_privileged_and_add_to_group_multiuser.sh.
